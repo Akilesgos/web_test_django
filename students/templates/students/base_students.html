@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Student list{% endblock title %}
+
+
+{% block nav_class_students %}active{% endblock nav_class_students %}
+
+{% block main_content %}
+
+  <div class= "mt-4 mb-4 mr-5 ml-5">
+      <h1>{% block table_name %}Список студентов{% endblock table_name%}</h1>
+  </div>
+  <div class= "mt-4 mb-4 mr-5 ml-5">
+{% block table_information %}
+    <table class="table table-striped ">
+        <thead>
+          <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">адресс</th>
+            <th scope="col">Skype</th>
+            <th scope="col">Курсы</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+{% for studens in student_all %}
+              <td class="align-middle"><a href="{% url 'students:students_id' studens.id %}">{{studens}}</a></td>
+            <td class="align-middle">{{ studens.surname }}</td>
+            <td class="align-middle">{{ studens.address }}</td>
+            <td class="align-middle">{{ studens.skype }}</td>
+            <td>
+    {% for course in studens.courses.all%}
+              <p class="mt-1 mb-1"><a href="{% url 'courses:courses' course.id %}">{{ course.name }}</a></p>
+    {% endfor %}
+            </td>
+          </tr>
+{% endfor %}
+        <tr>
+        </tbody>
+      </table>
+{% endblock table_information %}
+  </div>
+{% endblock main_content %}
+
+
+
+
+

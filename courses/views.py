@@ -9,6 +9,10 @@ def index(request):
     return render(request, 'courses/index.html', {'course': course})
 
 
+def contacts(request):
+    return render(request, 'courses/contacts.html',)
+
+
 @my_decorator_for_the_courses
 def courses(request, indification_number):
     return

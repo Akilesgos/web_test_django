@@ -1,0 +1,19 @@
+
+<div class="card mt-4 mb-4 mr-5 ml-5">
+  <div class="card-header">
+    {{ position }}
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+        {% url 'coaches:coaches_personal' course.coach.id as the_url_coach %}
+        {% url 'coaches:coaches_personal' course.assistant.id as the_url_assistant %}
+        {% if instructor_name == course.coach.first_name %}
+        <p><a href="{{ the_url_coach }}">{{ instructor_name }}</a></p>
+        {% else %}
+        <p><a href="{{ the_url_assistant }}">{{ instructor_name }}</a></p>
+        {% endif%}
+      <footer class="blockquote-footer">{{ instructor_description }}</footer>
+    </blockquote>
+  </div>
+</div>
+

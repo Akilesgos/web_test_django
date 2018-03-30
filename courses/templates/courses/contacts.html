@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Contacts Page{% endblock title %}
+
+
+{% block nav_class_contacts %}active{% endblock nav_class_contacts %}
+
+
+{% block main_content %}
+
+<div class="card-group mt-4 mb-4 mr-5 ml-5">
+  <div class="card ">
+    <img class="rounded float-left img-thumbnai img-fluid pl-5 pr-5 pt-3"   src="http://www.avatar-mix.ru/avatars_200x200/1397.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">{% filter force_escape|upper %}This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.{% endfilter %}</p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="rounded float-left img-thumbnai img-fluid pl-5 pr-5 pt-3" src="http://www.avatar-mix.ru/avatars_200x200/1397.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content. {% now " F Y H:i" %}</p>
+    </div>
+  </div>
+  <div class="card">
+    <img class="rounded float-left img-thumbnai img-fluid pl-5 pr-5 pt-3" src="http://www.avatar-mix.ru/avatars_200x200/1397.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+    </div>
+  </div>
+</div>
+
+{% endblock main_content %}
+
