@@ -18,29 +18,32 @@
 {% include 'include/instructor_include.html' with  position='Учитель' instructor_name=course.coach.first_name instructor_description=course.coach.description %}
 {% include 'include/instructor_include.html' with  position='Ассистент' instructor_name=course.assistant.first_name instructor_description=course.assistant.description %}
 
-    <h1 class="mt-4 mb-4 mr-5 ml-5">План курса</h1>
-  <div class="mt-4 mb-4 mr-5 ml-5">
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">№</th>
-            <th scope="col">Тема</th>
-            <th scope="col">Описание</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-{% for lesson in lessons %}
-            <td>{{ lesson.id }}</td>
-            <td>{{ lesson }}</td>
-            <td>{{ lesson.description }}</td>
-          </tr>
-{% endfor %}
+<h1 class="mt-4 mb-4 mr-5 ml-5">План курса</h1>
+<div class="mt-4 mb-4 mr-5 ml-5">
+  <a href="{% url 'courses:add_lesson' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить Урок</a>
+</div>
+<div class="mt-4 mb-4 mr-5 ml-5">
+  <table class="table table-striped">
+      <thead>
         <tr>
-            </tr>
-        </tbody>
-      </table>
-  </div>
+          <th scope="col">№</th>
+          <th scope="col">Тема</th>
+          <th scope="col">Описание</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+{% for lesson in lessons %}
+          <td>{{ lesson.id }}</td>
+          <td>{{ lesson }}</td>
+          <td>{{ lesson.description }}</td>
+        </tr>
+{% endfor %}
+      <tr>
+          </tr>
+      </tbody>
+    </table>
+</div>
 
 {% endblock main_content %}
 

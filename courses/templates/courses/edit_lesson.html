@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Main Page{% endblock title %}
+
+
+{% block nav_class_active %}active{% endblock nav_class_active %}
+
+
+{% block main_content %}
+
+
+<div class= "mt-4 mb-4 mr-5 ml-5">
+  <div>
+    <h2>Редактировать Курс</h2>
+    {% if messages %}
+    <ul class="messages">
+      {% for message  in  messages  %}
+      <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+      </li>{% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  <div>
+    <form method="post" >
+
+    {{ form.as_p }}
+
+    <input type="submit" />
+    </form>
+  </div>
+</div>
+
+{% endblock main_content %}
+
+

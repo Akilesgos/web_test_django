@@ -15,6 +15,9 @@
 
   <div class= "mt-4 mb-4 mr-5 ml-5">
     <h1>Information about courses</h1>
+    <div>
+      <a href="{% url 'courses:add_courses' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить Курс</a>
+    </div>
   </div>
   <div class= "mt-4 mb-4 mr-5 ml-5">
     <table class="table table-striped">
@@ -29,7 +32,7 @@
           <tr>
 {% for subjects in course %}
             <td>{{ subjects.id }}</td>
-            <td><a href="/courses/{{subjects.id}}">{{ subjects|upper}}</a></td>
+            <td><a href="/courses/{{subjects.id}}">{{ subjects|upper }}</a></td>
             <td>{{ subjects.short_description|title }}</td>
           </tr>
           <tr>

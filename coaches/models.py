@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 class Coach(User):
     user = models.OneToOneField(User, on_delete=models.CASCADE,
                                 parent_link=True, )
-
-    date_of_birth = models.DateField('date of birth')
+    date_of_birth = models.DateField('date of birth', null=True,
+                                    blank=True)
     gender = models.CharField(max_length=1, choices=(('m', 'Male'), ('f',
                                                                      'Famale')))
     phone = models.CharField(max_length=64,
