@@ -1,9 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
 from .models import Course, Lesson
 from .forms import CourseModelForm, LessonModelForm
-from .logic_for_views import my_decorator_for_the_courses
 
 
 def index(request):
@@ -16,13 +15,13 @@ def contacts(request):
 
 
 def courses(request, pk):
-    course = Course.objects.get(id=pk)
+    course = get_object_or_404(Course, id=pk)
     lessons = Lesson.objects.filter(course=course)  # filtration in
-    return render(request, 'courses/courses.html', {'course': course,
-                                                    'lessons': lessons})
+    return render(request, 'courses/detail.html', {'course': course,
+                                                   'lessons': lessons})
+
 
 def add_view_course(request):
-    # model_form=CourseModelForm(initial={'coach':'Akio the Beast'}) dont need
     if request.method == 'POST':
         form = CourseModelForm(request.POST)
         if form.is_valid():
@@ -60,7 +59,7 @@ def delete_course(request, pk):
 
 
 def add_view_lesson(request):
-    # model_form=CourseModelForm(initial={'coach':'Akio the Beast'}) dont need
+    #  model_form=CourseModelForm(initial={'coach':'Akio the Beast'}) dont need
     if request.method == 'POST':
         form = LessonModelForm(request.POST)
         if form.is_valid():
@@ -74,12 +73,13 @@ def add_view_lesson(request):
 
 def edit_lesson(request, pk):
     lesson = Lesson.objects.get(id=pk)
+    course = Course.objects.get(lesson=lesson)
     if request.method == 'POST':
         form = LessonModelForm(request.POST, instance=lesson)
         if form.is_valid():
             lesson = form.save()
             messages.success(request, 'Your lesson was eddit.')
-            return redirect('/courses/add_lesson')
+            return redirect(reverse('courses:courses', args=[course.id]))
     else:
         form = LessonModelForm(instance=lesson)
         return render(request, 'courses/edit_lesson.html', {'form': form})
@@ -87,11 +87,12 @@ def edit_lesson(request, pk):
 
 def delete_lesson(request, pk):
     lesson_delete = Lesson.objects.get(id=pk)
+    course = Course.objects.get(lesson=lesson_delete)
     if request.method == 'POST':
         lesson_delete.delete()
         messages.success(request, 'Your {} deleted.'.format(
             lesson_delete.subject))
-        return redirect('/courses/add_lesson')
+        return redirect(reverse('courses:courses', args=[course.id]))
     return render(request, 'courses/delete_lesson.html',
                   {'lesson_delete': lesson_delete})
 
@@ -99,6 +100,8 @@ def delete_lesson(request, pk):
 # Create your views here.
 
 '''
+
+
 def courses(request, indification_number):
     int_number_page = int(indification_number)
     if int_number_page == 1:
@@ -113,7 +116,7 @@ def courses(request, indification_number):
         course = Course.objects.get(id=3)
         lessons = Lesson.objects.filter(course=course)  # filtration in
         # foreing key
-    return render(request, 'courses/courses.html', {'course': course,
+    return render(request, 'courses/detail.html', {'course': course,
                                                  'lessons': lessons})                                      
 def index(request):
 latest_question_list = Question.objects.order_by('-pub_date')[:5]

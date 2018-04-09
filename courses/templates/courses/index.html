@@ -26,14 +26,26 @@
             <th scope="col">№</th>
             <th scope="col">Курс</th>
             <th scope="col">Описание</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
           <tr>
 {% for subjects in course %}
-            <td>{{ subjects.id }}</td>
+            <td>{{ forloop.counter }}</td>
             <td><a href="/courses/{{subjects.id}}">{{ subjects|upper }}</a></td>
             <td>{{ subjects.short_description|title }}</td>
+            <td>
+              <div>
+                <a href="{% url 'courses:edit_courses' subjects.id %}" class="btn btn-primary btn-sm active small" role="button" aria-pressed="true">Редактировать</a>
+              </div>
+            </td>
+            <td>
+              <div>
+                <a href="{% url 'courses:delete_courses' subjects.id %}" class="btn btn-primary btn-sm active small" role="button" aria-pressed="true">Удалить Курс</a>
+              </div>
+            </td>
           </tr>
           <tr>
 {% endfor %}

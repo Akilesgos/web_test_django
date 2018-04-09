@@ -16,6 +16,7 @@
   <div>
     {{ course_delete.name }}
     <form method="post" >
+    {% csrf_token %}
     <input type="submit" />
     </form>
   </div>

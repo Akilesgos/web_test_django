@@ -29,22 +29,29 @@
           <th scope="col">№</th>
           <th scope="col">Тема</th>
           <th scope="col">Описание</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr>
 {% for lesson in lessons %}
-          <td>{{ lesson.id }}</td>
+          <td>{{ forloop.counter }}</td>
           <td>{{ lesson }}</td>
           <td>{{ lesson.description }}</td>
+            <td>
+              <a href="{% url 'courses:edit_lesson' lesson.id %}" class="btn btn-primary btn-sm active small" role="button" aria-pressed="true">Редактировать Урок</a>
+          </td>
+          <td>
+              <a href="{% url 'courses:delete_lesson' lesson.id %}" class="btn btn-primary btn-sm active small" role="button" aria-pressed="true">Удалить Урок</a>
+          </td>
         </tr>
 {% endfor %}
-      <tr>
-          </tr>
       </tbody>
     </table>
 </div>
 
 {% endblock main_content %}
+
 
 

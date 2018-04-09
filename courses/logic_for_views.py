@@ -16,7 +16,7 @@ def my_decorator_for_the_courses(function):
         elif number == 3:
             course = Course.objects.get(id=3)
             lessons = Lesson.objects.filter(course=course)  # filtration in foreing
-        return render(request, 'courses/courses.html', {'course': course,
+        return render(request, 'courses/detail.html', {'course': course,
                                                     'lessons': lessons})
     return the_wrapper_for_the_courses
 

@@ -2,9 +2,10 @@
 
 {% block main_content%}
 
-<div class="mt-4 mb-4 mr-5 ml-5">
-{% for student in student_personal %}
 <h1>{{ student.name }}</h1>
+
+<div class="mt-4 mb-4 mr-5 ml-5">
+
 </div>
 <div class="mt-4 mb-4 mr-5 ml-5 w-50">
   <table class="table table-striped">
@@ -36,12 +37,11 @@
 
         </td>
     <tr>
-{% endfor %}
     </tbody>
   </table>
 </div>
 
-{%  endblock main_content%}
+{% endblock main_content %}
 
 
 

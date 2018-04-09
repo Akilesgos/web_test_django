@@ -11,6 +11,9 @@
       <h1>{% block table_name %}Список студентов{% endblock table_name%}</h1>
   </div>
   <div class= "mt-4 mb-4 mr-5 ml-5">
+    <a href="{% url 'students:add_student' %}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Добавить Student</a>
+  </div>
+  <div class= "mt-4 mb-4 mr-5 ml-5">
 {% block table_information %}
     <table class="table table-striped ">
         <thead>
@@ -34,6 +37,13 @@
               <p class="mt-1 mb-1"><a href="{% url 'courses:courses' course.id %}">{{ course.name }}</a></p>
     {% endfor %}
             </td>
+            <td class="align-middle">
+              <a href="{% url 'students:edit_student' studens.id %}" class="btn btn-primary btn-sm active small" role="button" aria-pressed="true">Edit Student</a
+            </td>
+            <td class="align-middle">
+              <a href="{% url 'students:delete_student' studens.id %}" class="btn btn-primary btn-sm active small" role="button" aria-pressed="true">Delete Student</a>
+            </td>
+
           </tr>
 {% endfor %}
         <tr>

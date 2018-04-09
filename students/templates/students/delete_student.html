@@ -11,16 +11,17 @@
 
 <div class= "mt-4 mb-4 mr-5 ml-5">
   <div>
-    <h2>Удалить Курс</h2>
+    <h2>Удалить Student</h2>
   </div>
   <div>
-    {{ lesson_delete.subject }}
+    {{ delete_student.name }}
     <form method="post" >
-     {% csrf_token %}
+    {% csrf_token %}
     <input type="submit" />
     </form>
   </div>
 </div>
+
 
 {% endblock main_content %}
 

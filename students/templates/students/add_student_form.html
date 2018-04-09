@@ -11,16 +11,24 @@
 
 <div class= "mt-4 mb-4 mr-5 ml-5">
   <div>
-    <h2>Удалить Курс</h2>
+    <h2>Добавить Student</h2>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages  %}
+      <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+      </li>{% endfor %}
+    </ul>
+    {% endif %}
   </div>
   <div>
-    {{ lesson_delete.subject }}
     <form method="post" >
-     {% csrf_token %}
+    {{ form.as_p }}
+    {% csrf_token %}
     <input type="submit" />
     </form>
   </div>
 </div>
+
 
 {% endblock main_content %}
 
